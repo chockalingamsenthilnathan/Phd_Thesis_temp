@@ -13,3 +13,5 @@ a) python 2d_gmsh_convert.py Ellip_Void_EllipBoundary_BbyA100_Phi05_res_pt04
 b) python 3D_gmsh_convert_nofacets.py  Box_wall3D
 
 All results in my thesis should be generatable from the files here
+
+Supplementary videos are available in the Supplementary Videos folder.
