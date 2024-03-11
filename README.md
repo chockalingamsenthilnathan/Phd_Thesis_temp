@@ -1,3 +1,5 @@
+This repository contains codes and supplementary videos relating to Chockalingam Senthilnathan's PhD thesis.
+
 SwellingGrowth.py has the FeniCS implementation of the swelling growth theory. It is clearly commented and all the run options are parameterized.
 Inclusion_Growth.py has the FeniCS implementation of the inclusion morphogenesis problem.
 Void_Growth.py has the FeniCS implementation for pressurized expansion of a void.
