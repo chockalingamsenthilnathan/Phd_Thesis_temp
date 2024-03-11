@@ -8,5 +8,6 @@ a) gmsh Ellip_Void_EllipBoundary_BbyA100_Phi05_res_pt04.geo -2
 or b) gmsh Box_Wall3D.geo -3
 2. Once you generat the msh file, use the python scripts to convert to xdmf files. Use the appropriate script depending on 2D or 3D geometry and whether or not the geometry has facets. For example
 a) python 2d_gmsh_convert.py Ellip_Void_EllipBoundary_BbyA100_Phi05_res_pt04
-b) python 3D_gmsh_convert_nofacets.py  Box_wall3D 
+b) python 3D_gmsh_convert_nofacets.py  Box_wall3D
+
 All results in my thesis should be generatable from the files here
