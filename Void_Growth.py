@@ -107,7 +107,7 @@ KbyG = Constant(1000)
 Simulation time-control related params
 """
 tdummy = 0.0
-steps = 1000
+steps = 50 #1000 #Run at high resolution for accuracy
 dt = 1.0/steps #Initial time stepping size, adaptive solver can change
 
 vis_steps = 5 #print detailed results for every vis_steps steps
@@ -119,6 +119,7 @@ adaptive_solver_cutbacklimit = 3
 adaptive_solver_decreasefactor = 2
 adaptive_solver_increasefactor = 1.5
 
+#max applied pressure Pbar
 pbarb_max = 2.2 #In axisymmetric case, 2.5 is the cavitation limit
 
 pbar_b = Expression(("pbarb_max*tdummy"),
@@ -578,8 +579,9 @@ while (tdummy <= 1):
             Jg_numerical_approx = a*b/a0*b0 #Approximate Jg estimate assuming ellipse
 
         storage_var[ii,0] = Jg_numerical  
-        print("Jg_num : {}  ".format(Jg_numerical))
-        print("Jg_num_approx(assuming ellipse) : {}  ".format(Jg_numerical_approx))
+        if ii%vis_steps == 0 or ii==1:
+            print("Jg_num : {}  ".format(Jg_numerical))
+            print("Jg_num_approx(assuming ellipse) : {}  ".format(Jg_numerical_approx))
         
         # Print progress of calculation periodically
         if ii%vis_steps == 0 or ii==1:               

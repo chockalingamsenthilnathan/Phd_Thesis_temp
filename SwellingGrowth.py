@@ -179,6 +179,7 @@ else :
     
 Delta_mu0bar = -eta*fgbarmix_max #Dimensionless species conversion cost
 
+#taug_dis/tau_g in thesis
 taug_sh_by_taug = 1e-2 #Timescale of shape evolution as a fraction 
                       #of volumetric growth timescale
 
@@ -300,13 +301,13 @@ tg_f = 5.0
 vis_steps = 5 #print detailed results for every vis_steps steps
 
 adaptive_solver = 1 #Adaptive time stepping if value is 1
-adaptive_solver_iters_min = 2
-adaptive_solver_iters_max = 15
-adaptive_solver_cutbacklimit = 3
-adaptive_solver_decreasefactor = 2
-adaptive_solver_increasefactor = 1.5
+adaptive_solver_iters_min = 2 #Increasing stepping time if solver iterations below this value
+adaptive_solver_iters_max = 15 #Decrease stepping time if solver iterations greater than this value
+adaptive_solver_cutbacklimit = 3 #Maximum number of times you want solver to decrease stepping time
+adaptive_solver_decreasefactor = 2 #Factor by which you want to cut stepping time
+adaptive_solver_increasefactor = 1.5 #Factor by which you want to increase stepping time
 
-storage_plots = 1.0
+storage_plots = 1.0 #set to zero if you dont want plots
 GrowthSwitch = 1.0
 GrowthShapeSwitch = 1.0
 

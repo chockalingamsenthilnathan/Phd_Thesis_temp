@@ -10,7 +10,7 @@ Displacement: ubar
 pressure: pbar
 Growth Volume ratio: Jg (Pseudo degree of freedom/prescibed here since already established
                          that growth rate is constant for high eta)
-Right Cauchy Growth shape tensor: Cgsh
+Right Cauchy Growth shape tensor: Cgsh (Cgdis in thesis)
 
 Contact:
 Chockalingam
@@ -65,7 +65,7 @@ a0 = Phi0*b0 # Ellipse undeformed minor axis
 BbyA = 100.0 #Outer Ellipse dimension ratio
 
 #This file is not set up in parts for full 3D simulations, choose only option 2 or 3
-simulation_type = 3 #2 is axiysymmetric - ellipsoid, 3 is plane strain - plane ellipse
+simulation_type = 2 #2 is axiysymmetric - ellipsoid, 3 is plane strain - plane ellipse
 isotropic_simulation = 0 #Set to zero for remodelling
 DG_simulation = 1 #if 1 uses DG else uses Lagrange (DG is more robust choice here)
 
@@ -134,13 +134,16 @@ ds = Measure('ds', domain=mesh, subdomain_data=facets)
 dx = Measure('dx', domain=mesh, subdomain_data=mf)
 
 if(isotropic_simulation==1):
-    muratiovec = [10.0, 5.0, 2.0, 1.0, 0.1, 0.01]
+    #G/Gc in thesis
+    muratiovec = [2.0, 1.0, 0.1]#[10.0, 5.0, 2.0, 1.0, 0.1, 0.01] 
     varyingvariablevec = muratiovec
     taug_sh_by_taug = Constant(1e15) #Does not play a role when isotropic_simulation =1
     #taug_sh refers to tau_g^dis in thesis document
 else:
+    #G/Gc in thesis
     muratio = 1.0 #Enter single value
-    taug_sh_by_taug_vec = [1e2, 1e1, 1e0, 1e-1, 1e-2, 1e-3] #taug_sh refers to tau_g^dis in thesis document
+    #taug_sh refers to tau_g^dis in thesis document
+    taug_sh_by_taug_vec = [1e1, 1e0, 1e-1] #[1e2, 1e1, 1e0, 1e-1, 1e-2, 1e-3] 
     varyingvariablevec = taug_sh_by_taug_vec
     
 fig = plt.figure() 
@@ -180,9 +183,9 @@ for varyingvariable in varyingvariablevec:
     Simulation time-control related params
     """
     tdummy = 0.0
-    steps = 2000
+    steps = 20 # 2000 #Run higher steps for fine resolution
     dt = 1.0/steps #initial value of dt_dummy #Adaptive stepper can change this value          
-    Expansion_ratio = 5.0      
+    Expansion_ratio = 1.2 #Increase value to go to higher volume expansions     
     tgbar = np.log(1+(Expansion_ratio-1)*tdummy) 
     
     vis_steps = 5 #print detailed results for every vis_steps steps
@@ -755,9 +758,11 @@ for varyingvariable in varyingvariablevec:
             
             storage_var[ii,0] = Jg_numerical  
             storage_var[ii,4] = J_numerical
-            print("Jg_num : {}  ".format(Jg_numerical))
-            print("J_num : {}  ".format(J_numerical))
-            print("J_num_approx(assuming ellipse) : {}  ".format(J_numerical_approx))
+            
+            if ii%vis_steps == 0 or ii==1:
+                print("Jg_num : {}  ".format(Jg_numerical))
+                print("J_num : {}  ".format(J_numerical))
+                print("J_num_approx(assuming ellipse) : {}  ".format(J_numerical_approx))
             
             # Print progress of calculation periodically
             if ii%vis_steps == 0 or ii==1:               
