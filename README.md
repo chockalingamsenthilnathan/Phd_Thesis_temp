@@ -1,4 +1,7 @@
-This repository contains codes and supplementary videos relating to Chockalingam Senthilnathan's PhD thesis.
+This repository contains codes and supplementary videos relating to Chockalingam Senthilnathan's PhD thesis. The following resources were used during the development of these codes:
+
+1. Anand, L.: Introduction to Coupled Theories in Solid Mechanics. Unpublished MIT 2.077 course notes (2023).
+2. E. M. Stewart and L. Anand. Example codes for coupled theories in solid mechanics, 2023. URL https://github.com/SolidMechanicsCoupledTheories/example_codes.
 
 SwellingGrowth.py has the FeniCS implementation of the swelling growth theory. It is clearly commented and all the run options are parameterized.
 Inclusion_Growth.py has the FeniCS implementation of the inclusion morphogenesis problem.
